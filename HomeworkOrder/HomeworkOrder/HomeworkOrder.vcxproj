@@ -147,10 +147,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="HashTable.h" />
+    <ClInclude Include="Heap.h" />
+    <ClInclude Include="Operations.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="HashTable.cpp" />
+    <ClCompile Include="Heap.cpp" />
     <ClCompile Include="HomeworkOrder.cpp" />
+    <ClCompile Include="Operations.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
