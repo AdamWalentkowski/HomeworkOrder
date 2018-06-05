@@ -1,7 +1,8 @@
 #include "HashTable.h"
 
 int Hash(int group_number) {
-	return (group_number * HASH_FACTOR) % MAX_GROUP_QUANTITY;
+	//return (group_number * HASH_FACTOR) % MAX_GROUP_QUANTITY;
+	return group_number;
 }
 
 HashNode *CreateHashNode(int group_number) {

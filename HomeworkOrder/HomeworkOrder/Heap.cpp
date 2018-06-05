@@ -24,7 +24,34 @@ void ResizeHeap(HashNode *node) {
 	node->root = new_heap;
 }
 
+void Heapify(int *heap, int elements_quantity, int parent_index) {
+	int left_child_index, right_child_index, chosen_child_index;
+	left_child_index = parent_index * 2 + 1;
+	right_child_index = parent_index * 2 + 2;
+
+	if (left_child_index >= elements_quantity) return;
+	else if (right_child_index >= elements_quantity) {
+		chosen_child_index = left_child_index;
+	}
+	else if (left_child_index >= right_child_index) {
+		chosen_child_index = left_child_index;
+	}
+	else chosen_child_index = right_child_index;
+
+	if (heap[chosen_child_index] > heap[parent_index]) {
+		Swap(heap[chosen_child_index], heap[parent_index]);
+		Heapify(heap, elements_quantity, chosen_child_index);
+		return;
+	}
+}
+
 void RemoveRoot(int *heap, int elements_quantity) {
 	heap[0] = NULL;
-	//Heapify(heap, elements_quantity);
+	Heapify(heap, elements_quantity, 0);
+}
+
+void Swap(int &a, int &b) {
+	int temp = a;
+	a = b;
+	b = temp;
 }
