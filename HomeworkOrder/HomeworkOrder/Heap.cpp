@@ -2,7 +2,6 @@
 
 void Insert(HashNode *node, int value) {
 	int old_heap_size = node->heap_size;
-	(node->elements_quantity)++;
 	for (int i = 0; i < old_heap_size; i++) {
 		if (node->root[i] == NULL) {
 			node->root[i] = value;
@@ -33,7 +32,7 @@ void Heapify(int *heap, int elements_quantity, int parent_index) {
 	else if (right_child_index >= elements_quantity) {
 		chosen_child_index = left_child_index;
 	}
-	else if (left_child_index >= right_child_index) {
+	else if (heap[left_child_index] >= heap[right_child_index]) {
 		chosen_child_index = left_child_index;
 	}
 	else chosen_child_index = right_child_index;
@@ -41,13 +40,16 @@ void Heapify(int *heap, int elements_quantity, int parent_index) {
 	if (heap[chosen_child_index] > heap[parent_index]) {
 		Swap(heap[chosen_child_index], heap[parent_index]);
 		Heapify(heap, elements_quantity, chosen_child_index);
-		return;
 	}
 }
 
-void RemoveRoot(int *heap, int elements_quantity) {
-	heap[0] = NULL;
-	Heapify(heap, elements_quantity, 0);
+void BubbleUp(int *heap, int child_index) {
+	int parent_index = (child_index + 1) / 2 - 1;
+	if (parent_index < 0) return;
+	else if (heap[child_index] > heap[parent_index]) {
+		Swap(heap[child_index], heap[parent_index]);
+		BubbleUp(heap, parent_index);
+	}
 }
 
 void Swap(int &a, int &b) {
